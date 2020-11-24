@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{134b344e-2efd-427b-ad92-12239be33dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules">
+      <UniqueIdentifier>{5c4ab894-f487-4d9e-a8d5-ace69e8f1ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{2d6b39a9-eee8-4a74-b6f6-83fe2d043d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules">
+      <UniqueIdentifier>{d733105c-3270-46ed-810c-726de3d2d802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules\Graphics">
+      <UniqueIdentifier>{f780cc69-c82b-4d27-af7f-15777d6cc8b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules\Graphics\Sprite/Text">
+      <UniqueIdentifier>{79d736d6-b12e-441c-9e29-f4ca59c0f85b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules\Input">
+      <UniqueIdentifier>{f148404b-7586-404b-bc98-21764d537e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules\Graphics">
+      <UniqueIdentifier>{808ca131-ec5c-426c-9e1e-cb7fe1dcd304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules\Graphics\Sprite/Text">
+      <UniqueIdentifier>{2d444a84-1e4f-4c39-afa4-21e9db24db5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules\Input">
+      <UniqueIdentifier>{81ec8c76-85a1-4d3a-a5fe-d5dfb5b20dda}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\D2DMgr.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimatedSprite.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input.cpp">
+      <Filter>Source Files\Engine\Modules\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Keyboard.cpp">
+      <Filter>Source Files\Engine\Modules\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\KeyboardEvent.cpp">
+      <Filter>Source Files\Engine\Modules\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mouse.cpp">
+      <Filter>Source Files\Engine\Modules\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MouseEvent.cpp">
+      <Filter>Source Files\Engine\Modules\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\D3DMgr.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Framework.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\Framework.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\D2DMgr.h">
+      <Filter>Header Files\Engine\Modules\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Renderer.h">
+      <Filter>Header Files\Engine\Modules\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\AnimatedSprite.h">
+      <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Sprite.h">
+      <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Input.h">
+      <Filter>Header Files\Engine\Modules\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Keyboard.h">
+      <Filter>Header Files\Engine\Modules\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\KeyboardEvent.h">
+      <Filter>Header Files\Engine\Modules\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Mouse.h">
+      <Filter>Header Files\Engine\Modules\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\MouseEvent.h">
+      <Filter>Header Files\Engine\Modules\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\D3DMgr.h">
+      <Filter>Header Files\Engine\Modules\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Text.h">
+      <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bkgrnd.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Mario.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="wolfAnims.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////////
+// Filename: KeyboardEvent.h
+////////////////////////////////////////////////////////////////////////////////
+#ifndef KeyboardEventH
+#define KeyboardEventH
+
+////////////////////////////////////////////////////////////////////////////////
+// Classname: KeyboardEvent
+////////////////////////////////////////////////////////////////////////////////
+class KeyboardEvent
+{
+public:
+	enum class KEventType
+	{
+		Press,
+		Release,
+		Invalid
+	};
+
+public:
+	KeyboardEvent();
+	KeyboardEvent(const KEventType& type, const unsigned char& key);
+
+	bool IsPressed() const;
+	bool IsRelease() const;
+	bool IsValid() const;
+	unsigned char GetKeyCode() const;
+
+private:
+	KEventType m_KEventType;
+	unsigned char m_cKey;
+};
+
+#endif
