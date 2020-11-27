@@ -2,7 +2,6 @@
 // Filename: Framework.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "../Headers/Framework.h"
-
 SystemPreferences Framework::m_SystPrefs;
 
 Framework::Framework()
@@ -52,8 +51,8 @@ Framework::~Framework()
 
 bool Framework::Initialise()
 {
-	m_pSprite = std::make_unique<Sprite>(mp_Renderer->GetD2DMgr(), L"bkgrnd.png");
-	m_pWolf = std::make_unique<AnimatedSprite>(mp_Renderer->GetD2DMgr(), L"wolfAnims.png", "wolfAnims.txt", D2D1::Point2F(400.f, 300.f), 0, 12.f);
+	m_pSprite = std::make_unique<Sprite>(mp_Renderer->GetD2DMgr(), L"Resources/Images/bkgrnd.png");
+	m_pWolf = std::make_unique<AnimatedSprite>(mp_Renderer->GetD2DMgr(), L"Resources/Images/wolfAnims.png", "Resources/Data/wolfAnims.txt", D2D1::Point2F(400.f, 300.f), 0, 12.f);
 	
 	//alternate method for loading animation--
 	/*

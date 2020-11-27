@@ -130,15 +130,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="bkgrnd.png">
+    <Image Include="Resources\bkgrnd.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Mario.png">
+    <Image Include="Resources\wolfAnims.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="wolfAnims.txt">
+    <Text Include="Resources\wolfAnims.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
