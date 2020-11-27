@@ -63,7 +63,7 @@ bool Framework::Initialise()
 		m_pWolf->LoadAnimations(wolfAnimCycles);
 	*/
 	
-	mp_Text.reset(new Text(mp_Renderer->GetD2DMgr(), Font(), D2D1::ColorF::Black, DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR));
+	mp_Text = std::make_unique<Text>(mp_Renderer->GetD2DMgr(), Font(), D2D1::ColorF::Black, DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
 	return true;
 }
