@@ -23,12 +23,9 @@
 // MY CLASS INCLUDES //
 ///////////////////////
 #include "../Headers/Timer.h"
-#include "../Headers/Renderer.h"
+#include "../Headers/StateMgr.h"
 #include "../Headers/Input.h"
-
-#include "../Headers/Text.h"
-#include "../Headers/Sprite.h"
-#include "../Headers/AnimatedSprite.h"
+#include "../Headers/Renderer.h"
 
 struct SystemPreferences
 {
@@ -57,7 +54,6 @@ public:
 
 	LRESULT CALLBACK MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam);
 
-	HWND GetHwnd();
 	static SystemPreferences& GetSystemPrefs();
 
 private:
@@ -85,11 +81,8 @@ private:
 	std::wstring m_fpsStr;
 
 	Timer m_Timer;
-	std::unique_ptr<Text> mp_Text;
+	std::unique_ptr<StateMgr> mp_StateMgr;
 	std::unique_ptr<Renderer> mp_Renderer;
-	std::unique_ptr<Sprite> m_pSprite;
-	std::unique_ptr<AnimatedSprite> m_pWolf;
-	
 };
 
 /////////////////////////

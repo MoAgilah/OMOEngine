@@ -44,7 +44,7 @@ class AnimatedSprite : public Sprite
 {
 public:
 	AnimatedSprite(D2DMgr* d2d, LPCWSTR imageFile, const char* animFile = nullptr, D2D1_POINT_2F pos = D2D1::Point2F(), const unsigned int& activeAnimation = 0, const float& animationFPS = 24.f);
-	
+
 	void Update(const float& dt);
 	void Draw(D2DMgr* d2d, const float& opacity = 1.0f, const D2D1_BITMAP_INTERPOLATION_MODE& interPol = D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR);
 

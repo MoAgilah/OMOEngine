@@ -2,12 +2,13 @@
 // Filename: Framework.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "../Headers/Framework.h"
+#include "../Headers/DebugState.h"
+
 SystemPreferences Framework::m_SystPrefs;
 
 Framework::Framework()
 	:m_ApplicationName{}, m_HInstance{}, m_Hwnd{}, m_IsPaused{}, m_IsResizing{}, m_IsMinimised{}, m_IsMaximised{},
-	m_FrameCnt{}, m_TimeElapsed{}, m_FrameTime{}, mp_Renderer(std::make_unique<Renderer>()),
-	m_pSprite(nullptr), m_pWolf(nullptr), mp_Text(nullptr)
+	m_FrameCnt{}, m_TimeElapsed{}, m_FrameTime{}, mp_StateMgr(std::make_unique<StateMgr>()), mp_Renderer(std::make_unique<Renderer>())
 {
 	try
 	{
@@ -51,19 +52,7 @@ Framework::~Framework()
 
 bool Framework::Initialise()
 {
-	m_pSprite = std::make_unique<Sprite>(mp_Renderer->GetD2DMgr(), L"Resources/Images/bkgrnd.png");
-	m_pWolf = std::make_unique<AnimatedSprite>(mp_Renderer->GetD2DMgr(), L"Resources/Images/wolfAnims.png", "Resources/Data/wolfAnims.txt", D2D1::Point2F(400.f, 300.f), 0, 12.f);
-	
-	//alternate method for loading animation--
-	/*
-		m_pWolf.reset(new AnimatedSprite(mp_Renderer->GetD2DMgr(), L"wolfAnims.png", 400.f, 300.f, 0, 12.f));
-		std::vector<AnimCycleData> wolfAnimCycles;
-		wolfAnimCycles.push_back(AnimCycleData("Running", true, 0, 5, 25.f, 64.f, 0.5f, 0.5f, 0.f, 1.f, 1.f, 1.f));
-		wolfAnimCycles.push_back(AnimCycleData("Attack", true, 0, 5, 24.f, 62.f, 0.5f, 0.5f, 0.f, 0.f, 0.f, 0.f));
-		m_pWolf->LoadAnimations(wolfAnimCycles);
-	*/
-	
-	mp_Text = std::make_unique<Text>(mp_Renderer->GetD2DMgr(), Font(), D2D1::ColorF::Black, DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+	mp_StateMgr->ChangeState(new DebugState("Debug", &m_Timer, mp_Renderer.get()));
 
 	return true;
 }
@@ -268,7 +257,7 @@ LRESULT CALLBACK Framework::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, 
 		{
 			m_IsPaused = true;
 			m_IsResizing = true;
-			m_Timer.Stop();
+			mp_StateMgr->Pause();
 		}
 		break;
 
@@ -276,7 +265,7 @@ LRESULT CALLBACK Framework::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, 
 		{
 			m_IsPaused = false;
 			m_IsResizing = false;
-			m_Timer.Start();
+			mp_StateMgr->Resume();
 			mp_Renderer->GetD3DMgr()->OnResize(&hwnd);
 		}
 		break;
@@ -288,12 +277,12 @@ LRESULT CALLBACK Framework::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, 
 			if (LOWORD(wparam) == WA_INACTIVE)
 			{
 				m_IsPaused = true;
-				m_Timer.Stop();
+				mp_StateMgr->Pause();
 			}
 			else
 			{
 				m_IsPaused = false;
-				m_Timer.Start();
+				mp_StateMgr->Resume();
 			}
 		}
 		break;
@@ -346,7 +335,7 @@ void Framework::ProcessInput()
 
 void Framework::UpdateScene(const float& deltatime)
 {
-	m_pWolf->Update(deltatime);
+	mp_StateMgr->Update(deltatime);
 
 	CalculateFrameStats();
 	ProcessInput();
@@ -354,36 +343,7 @@ void Framework::UpdateScene(const float& deltatime)
 
 void Framework::DrawScene()
 {
-	mp_Renderer->GetD3DMgr()->BeginScene(0.5f, 0.0f, 0.0f, 1.0f);
-
-	//render 3D stuffs--------------------------------
-	//------------------------------------------------
-
-	// Turn off the Z buffer to begin all 2D rendering.
-	mp_Renderer->GetD3DMgr()->TurnZBufferOff();
-	
-	////render 2D stuffs--------------------------------
-	mp_Renderer->GetD2DMgr()->GetDeviceContext()->BeginDraw();
-
-	mp_Renderer->GetD2DMgr()->GetDeviceContext()->Clear();
-
-	m_pSprite->Draw(mp_Renderer->GetD2DMgr());
-	
-	mp_Text->DrawFormat(mp_Renderer->GetD2DMgr(), m_fpsStr.c_str(), D2D1::Point2F(0, 0));
-	/*
-		mp_Text->SetText(mp_Renderer->GetD2DMgr(), m_fpsStr.c_str(), m_SystPrefs.i_ScreenWidth, m_SystPrefs.i_ScreenHeight);
-		mp_Text->DrawLayout(mp_Renderer->GetD2DMgr(), D2D1::Point2F(0, 0));
-	*/
-
-	m_pWolf->Draw(mp_Renderer->GetD2DMgr());
-
-	//------------------------------------------------
-	mp_Renderer->GetD2DMgr()->GetDeviceContext()->EndDraw();
-	
-	// Turn the Z buffer back on now that all 2D rendering has completed.
-	mp_Renderer->GetD3DMgr()->TurnZBufferOn();
-
-	mp_Renderer->GetD3DMgr()->EndScene();
+	mp_StateMgr->Draw();
 }
 
 
@@ -496,11 +456,6 @@ void Framework::ShutdownWindows()
 	gs_pApplicationHandle = nullptr;
 }
 
-HWND Framework::GetHwnd()
-{
-	return m_Hwnd;
-}
-
 SystemPreferences& Framework::GetSystemPrefs()
 {
 	return m_SystPrefs;
@@ -511,24 +466,24 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 	switch (umessage)
 	{
 		// Check if the window is being destroyed.
-		case WM_DESTROY:
-		{
-			PostQuitMessage(0);
-		}
-		break;
+	case WM_DESTROY:
+	{
+		PostQuitMessage(0);
+	}
+	break;
 
-		// Check if the window is being closed.
-		case WM_CLOSE:
-		{
-			PostQuitMessage(0);
-		}
-		break;
+	// Check if the window is being closed.
+	case WM_CLOSE:
+	{
+		PostQuitMessage(0);
+	}
+	break;
 
-		// All other messages pass to the message handler in the system class.
-		default:
-		{
-			return gs_pApplicationHandle->MessageHandler(hwnd, umessage, wparam, lparam);
-		}
+	// All other messages pass to the message handler in the system class.
+	default:
+	{
+		return gs_pApplicationHandle->MessageHandler(hwnd, umessage, wparam, lparam);
+	}
 	}
 
 	return gs_pApplicationHandle->MessageHandler(hwnd, umessage, wparam, lparam);
