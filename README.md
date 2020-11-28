@@ -22,5 +22,8 @@ Graphical features:-
       
 Miscellaneous features:-
       Timer - a high performance window's timer for use within the engine
+      State Mgr - is used to encapsulate the creation of things like graphical assets
+            Game State - is an abstract base class that is used to instantiate states 
+                  Debug state - is the state that is used to test new features
       
 
