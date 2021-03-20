@@ -69,9 +69,6 @@
     <ClCompile Include="Source\Sprite.cpp">
       <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AnimatedSprite.cpp">
-      <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Input.cpp">
       <Filter>Source Files\Engine\Modules\Input</Filter>
     </ClCompile>
@@ -115,9 +112,6 @@
     </ClInclude>
     <ClInclude Include="Headers\Renderer.h">
       <Filter>Header Files\Engine\Modules\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\AnimatedSprite.h">
-      <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Sprite.h">
       <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>

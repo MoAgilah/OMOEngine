@@ -19,7 +19,6 @@
 
 #include "../Headers/Text.h"
 #include "../Headers/Sprite.h"
-#include "../Headers/AnimatedSprite.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: DebugState

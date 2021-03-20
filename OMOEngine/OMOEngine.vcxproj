@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\AnimatedSprite.cpp" />
     <ClCompile Include="Source\D2DMgr.cpp" />
     <ClCompile Include="Source\D3DMgr.cpp" />
     <ClCompile Include="Source\DebugState.cpp" />
@@ -157,7 +156,6 @@
     <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\AnimatedSprite.h" />
     <ClInclude Include="Headers\D2DMgr.h" />
     <ClInclude Include="Headers\D3DMgr.h" />
     <ClInclude Include="Headers\DebugState.h" />
