@@ -13,9 +13,10 @@ DebugState::~DebugState()
 bool DebugState::Initialise()
 {
 	mp_Text = std::make_unique<Text>(m_pRenderer->GetD2DMgr(), Font(), D2D1::ColorF::Black, DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
-	m_pSprite = std::make_unique<Sprite>(m_pRenderer->GetD2DMgr(), L"Resources/Images/bkgrnd.png");
-	m_pWolf = std::make_unique<AnimatedSprite>(m_pRenderer->GetD2DMgr(), L"Resources/Images/wolfAnims.png", "Resources/Data/wolfAnims.txt", D2D1::Point2F(400.f, 300.f), 0, 12.f);
+	m_pSprite = std::make_unique<DX2DGameObj>(m_pRenderer->GetD2DMgr(),Layers::Background, L"Resources/Images/bkgrnd.png",XY());
 
+	m_pWolf = std::make_unique<DX2DGameObj>(m_pRenderer->GetD2DMgr(), Layers::Character, L"Resources/Images/wolfAnims.png", "Resources/Data/wolfAnims.txt", XY(400.f, 300.f), 0, 12.f);
+	
 	return true;
 }
 
@@ -47,6 +48,7 @@ void DebugState::ProcessInputs()
 
 void DebugState::Update(const float& dt)
 {
+	//m_pWolf->Update(dt);
 	m_pWolf->Update(dt);
 
 	ProcessInputs();
@@ -67,14 +69,14 @@ void DebugState::Draw()
 
 	m_pRenderer->GetD2DMgr()->GetDeviceContext()->Clear();
 
-	m_pSprite->Draw(m_pRenderer->GetD2DMgr());
+	m_pSprite->Draw(m_pRenderer);
 
 	SystemPreferences sp = Framework::GetSystemPrefs();
 
 	mp_Text->SetText(m_pRenderer->GetD2DMgr(), L"Hello World", (float)sp.i_ScreenWidth, (float)sp.i_ScreenHeight);
 	mp_Text->DrawLayout(m_pRenderer->GetD2DMgr(), D2D1::Point2F(0, 0));
 
-	m_pWolf->Draw(m_pRenderer->GetD2DMgr());
+	m_pWolf->Draw(m_pRenderer);
 
 	//------------------------------------------------
 	m_pRenderer->GetD2DMgr()->GetDeviceContext()->EndDraw();

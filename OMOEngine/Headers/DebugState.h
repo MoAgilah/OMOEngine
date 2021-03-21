@@ -20,6 +20,8 @@
 #include "../Headers/Text.h"
 #include "../Headers/Sprite.h"
 
+#include "../Headers/GameObject.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: DebugState
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,8 +43,8 @@ private:
 	Timer* m_pTimer;
 	Renderer* m_pRenderer;
 	std::unique_ptr<Text> mp_Text;
-	std::unique_ptr<Sprite> m_pSprite;
-	std::unique_ptr<AnimatedSprite> m_pWolf;
+	std::unique_ptr<GameObject> m_pSprite;
+	std::unique_ptr<GameObject> m_pWolf;
 };
 
 #endif

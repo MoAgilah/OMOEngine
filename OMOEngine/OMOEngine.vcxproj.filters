@@ -28,46 +28,52 @@
     <Filter Include="Source Files\Engine\Modules\Graphics">
       <UniqueIdentifier>{f780cc69-c82b-4d27-af7f-15777d6cc8b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Modules\Graphics\Sprite/Text">
-      <UniqueIdentifier>{79d736d6-b12e-441c-9e29-f4ca59c0f85b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Engine\Modules\Input">
       <UniqueIdentifier>{f148404b-7586-404b-bc98-21764d537e1d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Engine\Modules\Graphics">
       <UniqueIdentifier>{808ca131-ec5c-426c-9e1e-cb7fe1dcd304}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Modules\Graphics\Sprite/Text">
-      <UniqueIdentifier>{2d444a84-1e4f-4c39-afa4-21e9db24db5d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Modules\Input">
       <UniqueIdentifier>{81ec8c76-85a1-4d3a-a5fe-d5dfb5b20dda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\Modules\Misc.">
-      <UniqueIdentifier>{16c345d5-07b3-402c-858d-4227b73f0a73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Modules\Misc.">
-      <UniqueIdentifier>{be9a6eed-4222-4b9a-9f11-d017b0084add}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Engine\Modules\Misc.\State">
+    <Filter Include="Header Files\Engine\Modules\State">
       <UniqueIdentifier>{c2a90a23-5d57-4d03-847d-0aeab264e2ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Modules\Misc.\State">
+    <Filter Include="Source Files\Engine\Modules\State">
       <UniqueIdentifier>{79f401f9-8cc9-4da8-b49d-0c4ebab1b4a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Common">
+      <UniqueIdentifier>{16c345d5-07b3-402c-858d-4227b73f0a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Common">
+      <UniqueIdentifier>{be9a6eed-4222-4b9a-9f11-d017b0084add}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules\GameObjects">
+      <UniqueIdentifier>{242a392d-6322-4d5a-bfd7-15dd807ce47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules\Graphics\DirectX">
+      <UniqueIdentifier>{2d444a84-1e4f-4c39-afa4-21e9db24db5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Modules\Graphics\DirectX\Drawable">
+      <UniqueIdentifier>{757d03f1-6a02-465a-95ad-d9f1af40ac2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules\Graphics\DirectX">
+      <UniqueIdentifier>{79d736d6-b12e-441c-9e29-f4ca59c0f85b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules\Graphics\DirectX\Drawable">
+      <UniqueIdentifier>{601be0c8-449d-46dd-86bc-649f26d139d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Modules\GameObjects">
+      <UniqueIdentifier>{147a7109-5c4f-48ee-981c-d1658a10d6ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\D2DMgr.cpp">
-      <Filter>Source Files\Engine\Modules\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Renderer.cpp">
       <Filter>Source Files\Engine\Modules\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sprite.cpp">
-      <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input.cpp">
       <Filter>Source Files\Engine\Modules\Input</Filter>
@@ -84,37 +90,46 @@
     <ClCompile Include="Source\MouseEvent.cpp">
       <Filter>Source Files\Engine\Modules\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Source\D3DMgr.cpp">
-      <Filter>Source Files\Engine\Modules\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Framework.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Text.cpp">
-      <Filter>Source Files\Engine\Modules\Graphics\Sprite/Text</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Timer.cpp">
-      <Filter>Source Files\Engine\Modules\Misc.</Filter>
+      <Filter>Source Files\Engine\Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\StateMgr.cpp">
-      <Filter>Source Files\Engine\Modules\Misc.\State</Filter>
+      <Filter>Source Files\Engine\Modules\State</Filter>
     </ClCompile>
     <ClCompile Include="Source\DebugState.cpp">
-      <Filter>Source Files\Engine\Modules\Misc.\State</Filter>
+      <Filter>Source Files\Engine\Modules\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Headers\Point.cpp">
+      <Filter>Source Files\Engine\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\D2DMgr.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\D3DMgr.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Geometry.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text.cpp">
+      <Filter>Source Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Source Files\Engine\Modules\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Framework.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\D2DMgr.h">
-      <Filter>Header Files\Engine\Modules\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Renderer.h">
       <Filter>Header Files\Engine\Modules\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Sprite.h">
-      <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Input.h">
       <Filter>Header Files\Engine\Modules\Input</Filter>
@@ -131,23 +146,38 @@
     <ClInclude Include="Headers\MouseEvent.h">
       <Filter>Header Files\Engine\Modules\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\D3DMgr.h">
-      <Filter>Header Files\Engine\Modules\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Text.h">
-      <Filter>Header Files\Engine\Modules\Graphics\Sprite/Text</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Timer.h">
-      <Filter>Header Files\Engine\Modules\Misc.</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\StateMgr.h">
-      <Filter>Header Files\Engine\Modules\Misc.\State</Filter>
+      <Filter>Header Files\Engine\Common</Filter>
     </ClInclude>
     <ClInclude Include="Headers\GameState.h">
-      <Filter>Header Files\Engine\Modules\Misc.\State</Filter>
+      <Filter>Header Files\Engine\Modules\State</Filter>
     </ClInclude>
     <ClInclude Include="Headers\DebugState.h">
-      <Filter>Header Files\Engine\Modules\Misc.\State</Filter>
+      <Filter>Header Files\Engine\Modules\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\StateMgr.h">
+      <Filter>Header Files\Engine\Modules\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Point.h">
+      <Filter>Header Files\Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameObject.h">
+      <Filter>Header Files\Engine\Modules\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\D2DMgr.h">
+      <Filter>Header Files\Engine\Modules\Graphics\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\D3DMgr.h">
+      <Filter>Header Files\Engine\Modules\Graphics\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Geometry.h">
+      <Filter>Header Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Sprite.h">
+      <Filter>Header Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Text.h">
+      <Filter>Header Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

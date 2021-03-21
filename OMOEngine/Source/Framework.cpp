@@ -59,6 +59,8 @@ bool Framework::Initialise()
 
 void Framework::Run()
 {
+	float accumalator = 0.f;
+	float step = 0.1f;
 	bool running = true;
 	MSG msg;
 
@@ -86,7 +88,12 @@ void Framework::Run()
 			{
 				m_Timer.Tick();
 
-				UpdateScene(m_Timer.DeltaTime());
+				accumalator += m_Timer.DeltaTime();
+				while (accumalator >= step)
+				{
+					UpdateScene(step);
+					accumalator -= step;
+				}
 				DrawScene();
 			}
 			else

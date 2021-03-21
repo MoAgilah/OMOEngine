@@ -139,10 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Headers\Point.cpp" />
     <ClCompile Include="Source\D2DMgr.cpp" />
     <ClCompile Include="Source\D3DMgr.cpp" />
     <ClCompile Include="Source\DebugState.cpp" />
     <ClCompile Include="Source\Framework.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\Geometry.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\KeyboardEvent.cpp" />
@@ -160,12 +163,15 @@
     <ClInclude Include="Headers\D3DMgr.h" />
     <ClInclude Include="Headers\DebugState.h" />
     <ClInclude Include="Headers\Framework.h" />
+    <ClInclude Include="Headers\GameObject.h" />
     <ClInclude Include="Headers\GameState.h" />
+    <ClInclude Include="Headers\Geometry.h" />
     <ClInclude Include="Headers\Input.h" />
     <ClInclude Include="Headers\Keyboard.h" />
     <ClInclude Include="Headers\KeyboardEvent.h" />
     <ClInclude Include="Headers\Mouse.h" />
     <ClInclude Include="Headers\MouseEvent.h" />
+    <ClInclude Include="Headers\Point.h" />
     <ClInclude Include="Headers\Renderer.h" />
     <ClInclude Include="Headers\Sprite.h" />
     <ClInclude Include="Headers\StateMgr.h" />

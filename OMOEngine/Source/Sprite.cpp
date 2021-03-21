@@ -1,11 +1,11 @@
 #include "../Headers/Sprite.h"
 
-Sprite::Sprite(D2DMgr* d2d, LPCWSTR imageFile, D2D1_POINT_2F pos)
-	: m_Pos(pos)
+Sprite::Sprite(D2DMgr* d2d, Layers layer, std::wstring imageFile, D2D1_POINT_2F pos)
+	: m_Position(pos),m_Layer(layer),m_Identifier(0)
 {
 	// create decoder
 	Microsoft::WRL::ComPtr<IWICBitmapDecoder> bitmapDecoder;
-	if FAILED(d2d->GetWICImagingFactory()->CreateDecoderFromFilename(imageFile, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, bitmapDecoder.ReleaseAndGetAddressOf()))
+	if FAILED(d2d->GetWICImagingFactory()->CreateDecoderFromFilename(imageFile.c_str(), NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, bitmapDecoder.ReleaseAndGetAddressOf()))
 		MessageBox(NULL, L"Critical Error: Failed to create decoder from filename", L"Error Msg", MB_OK);
 
 	// get the correct frame
@@ -27,45 +27,42 @@ Sprite::Sprite(D2DMgr* d2d, LPCWSTR imageFile, D2D1_POINT_2F pos)
 		MessageBox(NULL, L"Failed to create the bitmap image", L"Error Msg", MB_OK);
 }
 
-void Sprite::Update(const float& dt)
+SSprite::SSprite(D2DMgr* d2d, Layers layer, std::wstring imageFile, D2D1_POINT_2F pos)
+	:Sprite(d2d, layer, imageFile, pos) {}
+
+void SSprite::Update(const float& dt)
 {}
 
-void Sprite::Draw(D2DMgr* d2d, D2D1_RECT_F* destRect, D2D1_RECT_F* sourceRect, const float& opacity, const D2D1_BITMAP_INTERPOLATION_MODE& interPol)
+void SSprite::Draw(D2DMgr* d2d, const float& opacity, const D2D1_BITMAP_INTERPOLATION_MODE& interPol)
 {
-	if (!destRect)
-	{
-		D2D1_SIZE_U size = m_pBitmap->GetPixelSize();
-		D2D1_RECT_F rect = { m_Pos.x, m_Pos.y, m_Pos.x + size.width, m_Pos.y + size.height };
+	auto size = GetBitmap()->GetPixelSize();
+	auto pos = GetPosition();
+	D2D1_RECT_F rect = { pos.x, pos.y, pos.x + size.width, pos.y + size.height };
 
-		d2d->GetDeviceContext()->DrawBitmap(m_pBitmap.Get(), rect, opacity, interPol, sourceRect);
-	}
-	else
-	{
-		d2d->GetDeviceContext()->DrawBitmap(m_pBitmap.Get(), destRect, opacity, interPol, sourceRect);
-	}
+	d2d->GetDeviceContext()->DrawBitmap(GetBitmap(), rect, opacity, interPol, nullptr);
 }
 
-AnimatedSprite::AnimatedSprite(D2DMgr* d2d, LPCWSTR imageFile, const char* animFile, D2D1_POINT_2F pos, const unsigned int& initAnim, const float& animFPS)
-	:Sprite(d2d, imageFile, pos), m_PlayedOnce(false), m_CurrAnim(initAnim), m_CurrFrame(0), m_AnimFPS(animFPS), m_FrameTime(0.f)
+ASprite::ASprite(D2DMgr* d2d, Layers layer, std::wstring imageFile, const char* animFile, D2D1_POINT_2F pos, const unsigned int& initAnim, const float& animFPS)
+	:Sprite(d2d, layer, imageFile, pos), m_Played(false), m_CurrAnim(initAnim), m_CurrFrame(0), m_AnimFPS(animFPS), m_FrameTime(0.f)
 {
 	if (!LoadAnimations(animFile))
 		MessageBox(NULL, L"Critical Error: Failed to load animations", L"Error Msg", MB_OK);
 }
 
-void AnimatedSprite::Update(const float& dt)
+void ASprite::Update(const float& dt)
 {
 	UpdateAnimation(dt);
 }
 
-void AnimatedSprite::Draw(D2DMgr* d2d, const float& opacity, const D2D1_BITMAP_INTERPOLATION_MODE& interPol)
+void ASprite::Draw(D2DMgr* d2d, const float& opacity, const D2D1_BITMAP_INTERPOLATION_MODE& interPol)
 {
 	AnimCycleData cycleData = m_AnimData[m_CurrAnim];
-
+	D2D1_POINT_2F Pos = GetPosition();
 	// compute the destination rectangle, make sure to put the rotation centre at the desired position
-	D2D1_RECT_F destRect = { m_Pos.x - (cycleData.m_Width * cycleData.m_RotCntX),				// upper left x: x + width * rotationCenterX
-							 m_Pos.y - (cycleData.m_Height * cycleData.m_RotCntY),				// upper left y: y + height * rotationCenterY
-							 m_Pos.x + (cycleData.m_Width * (1.0f - cycleData.m_RotCntX)),		// lower right x: x + width * (1-rotationCenterX)
-							 m_Pos.y + (cycleData.m_Height * (1.0f - cycleData.m_RotCntY)) };	// lower right y: y + height * (1-rotationCenterY)
+	D2D1_RECT_F destRect = { Pos.x - (cycleData.m_Width * cycleData.m_RotCntX),				// upper left x: x + width * rotationCenterX
+							 Pos.y - (cycleData.m_Height * cycleData.m_RotCntY),				// upper left y: y + height * rotationCenterY
+							 Pos.x + (cycleData.m_Width * (1.0f - cycleData.m_RotCntX)),		// lower right x: x + width * (1-rotationCenterX)
+							 Pos.y + (cycleData.m_Height * (1.0f - cycleData.m_RotCntY)) };	// lower right y: y + height * (1-rotationCenterY)
 
 	// compute the coordinates of the upper left corner of the source rectangle
 	// upper left x of the i-th sprite: border padding plus i-times the combined width of each image and padding between images
@@ -78,12 +75,12 @@ void AnimatedSprite::Draw(D2DMgr* d2d, const float& opacity, const D2D1_BITMAP_I
 	startY += m_AnimData[0].m_BorderHeight;
 
 	D2D1_RECT_F sourceRect = { startX, startY, startX + cycleData.m_Width, startY + cycleData.m_Height };
-	Sprite::Draw(d2d, &destRect, &sourceRect, opacity, interPol);
+	d2d->GetDeviceContext()->DrawBitmap(GetBitmap(), destRect, opacity, interPol, sourceRect);
 }
 
-void AnimatedSprite::UpdateAnimation(const float& deltaTime)
+void ASprite::UpdateAnimation(const float& deltaTime)
 {
-	if (!m_PlayedOnce)
+	if (!m_Played)
 	{
 		m_FrameTime += deltaTime;
 
@@ -96,7 +93,8 @@ void AnimatedSprite::UpdateAnimation(const float& deltaTime)
 			//use the modulo op to prevent skip of last frame
 			if (m_CurrFrame >= m_AnimData[m_CurrAnim].m_NumFrames)
 			{
-				if (!m_AnimData[m_CurrAnim].m_IsLooping)	m_PlayedOnce = true;
+				if (!m_AnimData[m_CurrAnim].m_IsLooping)	
+					m_Played = true;
 				m_CurrFrame = m_CurrFrame % m_AnimData[m_CurrAnim].m_NumFrames;
 			}
 		}
@@ -105,7 +103,7 @@ void AnimatedSprite::UpdateAnimation(const float& deltaTime)
 	}
 }
 
-void AnimatedSprite::ChangeAnimation(const unsigned int& animID)
+void ASprite::ChangeAnimation(const unsigned int& animID)
 {
 	if (animID > m_AnimData.size())
 	{
@@ -120,7 +118,7 @@ void AnimatedSprite::ChangeAnimation(const unsigned int& animID)
 	}
 }
 
-bool AnimatedSprite::LoadAnimations(const char* filename)
+bool ASprite::LoadAnimations(const char* filename)
 {
 	std::ifstream file(filename, std::ios_base::in);
 	std::string str;
@@ -154,3 +152,5 @@ bool AnimatedSprite::LoadAnimations(const char* filename)
 
 	return false;
 }
+
+
