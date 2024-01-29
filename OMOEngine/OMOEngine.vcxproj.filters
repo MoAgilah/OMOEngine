@@ -111,9 +111,6 @@
     <ClCompile Include="Source\D3DMgr.cpp">
       <Filter>Source Files\Engine\Modules\Graphics\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Geometry.cpp">
-      <Filter>Source Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Sprite.cpp">
       <Filter>Source Files\Engine\Modules\Graphics\DirectX\Drawable</Filter>
     </ClCompile>
@@ -181,15 +178,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\bkgrnd.png">
+    <Image Include="..\..\..\..\source\repos\MoAgilah\OMOEngine\OMOEngine\Resources\Images\wolfAnims.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\wolfAnims.png">
+    <Image Include="..\..\..\..\source\repos\MoAgilah\OMOEngine\OMOEngine\Resources\Images\bkgrnd.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Resources\wolfAnims.txt">
+    <Text Include="..\..\..\..\source\repos\MoAgilah\OMOEngine\OMOEngine\Resources\Data\wolfAnims.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

@@ -13,8 +13,7 @@ DebugState::~DebugState()
 bool DebugState::Initialise()
 {
 	mp_Text = std::make_unique<Text>(m_pRenderer->GetD2DMgr(), Font(), D2D1::ColorF::Black, DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
-	m_pSprite = std::make_unique<DX2DGameObj>(m_pRenderer->GetD2DMgr(),Layers::Background, L"Resources/Images/bkgrnd.png",XY());
-
+	m_pSprite = std::make_unique<DX2DGameObj>(m_pRenderer->GetD2DMgr(), Layers::Background, L"Resources/Images/bkgrnd.png", XY());
 	m_pWolf = std::make_unique<DX2DGameObj>(m_pRenderer->GetD2DMgr(), Layers::Character, L"Resources/Images/wolfAnims.png", "Resources/Data/wolfAnims.txt", XY(400.f, 300.f), 0, 12.f);
 	
 	return true;
